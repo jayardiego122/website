@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jay-Ar Diego | Portfolio</title>
+  <meta name="description" content="Jay-Ar Diego portfolio website featuring experience in marketing, content creation, customer engagement, and sales development." />
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --surface: rgba(255,255,255,0.72);
+      --surface-strong: #ffffff;
+      --text: #171717;
+      --muted: #5c5c5c;
+      --line: rgba(23,23,23,0.08);
+      --accent: #1f2937;
+      --shadow: 0 24px 70px rgba(0,0,0,0.10);
+      --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 30%),
+        linear-gradient(180deg, #efe8dc 0%, var(--bg) 45%, #fbfaf7 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(246,241,232,0.78);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0;
+      gap: 18px;
+    }
+    .brand { font-weight: 700; letter-spacing: -0.03em; font-size: 1.05rem; }
+    .links { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 0.95rem; }
+    .hero { padding: 48px 0 28px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.65); border: 1px solid var(--line);
+      color: var(--muted); font-size: 0.9rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    }
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(2.6rem, 5vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+    .subtitle { font-size: clamp(1.05rem, 2vw, 1.35rem); color: #303030; max-width: 730px; }
+    .lead { color: var(--muted); line-height: 1.8; max-width: 700px; font-size: 1rem; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 22px; border-radius: 999px; font-weight: 600;
+      border: 1px solid var(--line); transition: 0.2s ease;
+    }
+    .btn.primary { background: #171717; color: white; box-shadow: var(--shadow); }
+    .btn.secondary { background: rgba(255,255,255,0.8); }
+    .btn:hover { transform: translateY(-2px); }
+    .contact-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    .pill {
+      padding: 12px 15px; border-radius: 18px; background: rgba(255,255,255,0.68);
+      border: 1px solid var(--line); color: #353535; font-size: 0.95rem;
+    }
+    .portrait-card {
+      position: relative; border-radius: 34px; padding: 14px;
+      background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.75);
+      box-shadow: var(--shadow);
+    }
+    .portrait-card::before {
+      content: ""; position: absolute; inset: 12px; border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0)); pointer-events: none;
+    }
+    .portrait { border-radius: 26px; width: 100%; height: 620px; object-fit: cover; object-position: center top; }
+    .section { padding: 28px 0; }
+    .section-title { font-size: clamp(1.8rem, 2.8vw, 3rem); letter-spacing: -0.05em; margin: 0 0 12px; }
+    .section-copy { color: var(--muted); max-width: 720px; line-height: 1.8; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 12px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+      backdrop-filter: blur(18px);
+    }
+    .stat-number { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.05em; }
+    .stat-label { color: var(--muted); margin-top: 8px; font-size: 0.95rem; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .tag { padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.82); border: 1px solid var(--line); font-size: 0.92rem; }
+    .timeline { display: grid; gap: 18px; }
+    .meta { display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .role { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; }
+    .company { color: var(--muted); margin-top: 4px; }
+    .period { background: rgba(255,255,255,0.85); padding: 9px 12px; border-radius: 999px; font-size: 0.88rem; border: 1px solid var(--line); }
+    ul.clean { padding-left: 20px; margin: 16px 0 0; color: #353535; line-height: 1.75; }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .badge { display: inline-flex; width: fit-content; padding: 8px 12px; border-radius: 999px; background: #f3efe8; border: 1px solid var(--line); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.16em; color: #5f5a54; margin-bottom: 14px; }
+    .impact { margin-top: 18px; color: #424242; background: rgba(255,255,255,0.78); border: 1px solid var(--line); border-radius: 20px; padding: 14px; font-size: 0.95rem; }
+    .education { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .footer-cta {
+      background: #151515; color: #fff; border-radius: 34px; padding: 34px;
+      box-shadow: var(--shadow);
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; align-items: center;
+    }
+    .footer-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 20px; color: #e8e8e8; }
+    .muted-light { color: rgba(255,255,255,0.72); line-height: 1.8; }
+    footer { padding: 18px 0 32px; color: var(--muted); font-size: 0.92rem; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .split, .footer-cta, .projects, .education { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .portrait { height: 520px; }
+    }
+    @media (max-width: 640px) {
+      .links { display: none; }
+      .hero { padding-top: 24px; }
+      .stats { grid-template-columns: 1fr; }
+      .portrait { height: 430px; }
+      .container { width: min(100% - 20px, 1160px); }
+      .card, .footer-cta { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">Jay-Ar Diego</a>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Marketing Manager • Content Creator • Sales Development</div>
+          <h1>Jay-Ar Diego</h1>
+          <p class="subtitle">Building brands, strengthening engagement, and turning communication into results.</p>
+          <p class="lead">
+            Dedicated marketing professional with robust experience in managing campaigns, customer engagement,
+            and employee performance. This portfolio presents a clean and professional online presence built
+            from Jay-Ar's resume, experience, and career direction.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+          <div class="contact-pills">
+            <div class="pill">📧 jayrdiego122@gmail.com</div>
+            <div class="pill">📱 (510) 816-1013</div>
+            <div class="pill">📍 Oakland, CA</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <img class="portrait" alt="Jay-Ar Diego portrait" src="data:image/jpeg;base64,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" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container stats">
+        <div class="card"><div class="stat-number">4+</div><div class="stat-label">Years of combined experience</div></div>
+        <div class="card"><div class="stat-number">5+</div><div class="stat-label">Professional strengths showcased</div></div>
+        <div class="card"><div class="stat-number">3</div><div class="stat-label">Core industries represented</div></div>
+        <div class="card"><div class="stat-number">1</div><div class="stat-label">Fluent business language</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container split">
+        <div class="card">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-copy">
+            I bring a combined background in marketing, content creation, customer engagement, and sales support.
+            My experience covers campaign execution, branding consistency, employee coordination, and relationship-building.
+            I work best in environments where communication, creativity, and structure need to move together.
+          </p>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Core Skills</h2>
+          <div class="skills">
+            <span class="tag">Public Relations</span>
+            <span class="tag">Project Management</span>
+            <span class="tag">Teamwork</span>
+            <span class="tag">Time Management</span>
+            <span class="tag">Leadership</span>
+            <span class="tag">Effective Communication</span>
+            <span class="tag">Critical Thinking</span>
+            <span class="tag">Campaign Strategy</span>
+            <span class="tag">Customer Engagement</span>
+            <span class="tag">Brand Consistency</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <h2 class="section-title">Work Experience</h2>
+        <p class="section-copy">Professional history drawn from the resume and arranged into a polished portfolio format.</p>
+        <div class="timeline" style="margin-top:18px;">
+          <div class="card">
+            <div class="meta">
+              <div>
+                <div class="role">Marketing Supervisor / Human Resource Officer</div>
+                <div class="company">Pacman Wildcard Gym</div>
+              </div>
+              <div class="period">2021 – 2022</div>
+            </div>
+            <ul class="clean">
+              <li>Developed and executed comprehensive marketing strategies aligned with company goals.</li>
+              <li>Managed marketing campaigns while maintaining brand and operational standards.</li>
+              <li>Coordinated hiring, onboarding, and employee performance in the marketing department.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="meta">
+              <div>
+                <div class="role">Social Media Manager / Content Creator</div>
+                <div class="company">Fligo Restaurant by Chef Minerva</div>
+              </div>
+              <div class="period">2021 – 2023</div>
+            </div>
+            <ul class="clean">
+              <li>Supported brand growth through content planning and social media execution.</li>
+              <li>Helped manage marketing budget decisions with a focus on efficient resource use.</li>
+              <li>Monitored brand consistency across marketing channels and materials.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="meta">
+              <div>
+                <div class="role">Sales Development Representative</div>
+                <div class="company">Six Eleven Global Services</div>
+              </div>
+              <div class="period">2022 – 2023</div>
+            </div>
+            <ul class="clean">
+              <li>Built and maintained strong professional relationships with partners, agencies, and vendors.</li>
+              <li>Supported initiatives that improved communication and outreach workflows.</li>
+              <li>Helped maintain consistent customer-facing messaging across channels.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title">Selected Projects</h2>
+        <p class="section-copy">These project cards are portfolio-ready concepts created from Jay-Ar's actual work background and strengths.</p>
+        <div class="projects" style="margin-top:18px;">
+          <div class="card">
+            <div class="badge">Social Media & Content</div>
+            <h3>Restaurant Brand Growth Campaign</h3>
+            <p class="section-copy">A polished concept showing how content direction, campaign rhythm, and visual consistency can elevate a restaurant brand online.</p>
+            <div class="impact"><strong>Potential impact:</strong> stronger engagement, more recognizable branding, and cleaner digital presentation.</div>
+          </div>
+          <div class="card">
+            <div class="badge">Marketing + HR</div>
+            <h3>Gym Marketing & Team Operations System</h3>
+            <p class="section-copy">A hybrid workflow concept combining promotion strategy, employee coordination, and performance alignment for a fitness business.</p>
+            <div class="impact"><strong>Potential impact:</strong> better campaign execution, clearer staff coordination, and stronger internal accountability.</div>
+          </div>
+          <div class="card">
+            <div class="badge">Sales Development</div>
+            <h3>Lead Outreach Conversion Framework</h3>
+            <p class="section-copy">A client outreach and relationship-building structure inspired by SDR work, designed to keep communication organized and follow-ups intentional.</p>
+            <div class="impact"><strong>Potential impact:</strong> smoother outreach funnel, better response tracking, and stronger prospect management.</div>
+          </div>
+          <div class="card">
+            <div class="badge">Personal Brand</div>
+            <h3>Professional Portfolio Website</h3>
+            <p class="section-copy">A modern web presence tailored to present Jay-Ar as a polished marketing professional with a calm, premium, and recruiter-friendly visual identity.</p>
+            <div class="impact"><strong>Potential impact:</strong> stronger first impression, clearer professional story, and higher trust for clients or employers.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="education" style="margin-top:18px;">
+          <div class="card">
+            <div class="badge">2024 – 2025</div>
+            <h3>Laney College</h3>
+            <p class="section-copy">Ethnic Studies</p>
+          </div>
+          <div class="card">
+            <div class="badge">2019 – 2023</div>
+            <h3>Goldenstate College</h3>
+            <p class="section-copy">Bachelor of Business<br />GPA: 3.8 / 4.0</p>
+          </div>
+          <div class="card">
+            <div class="badge">2019 – 2023</div>
+            <h3>Lyceum Philippines University</h3>
+            <p class="section-copy">Bachelor in English<br />GPA: 3.7 / 4.0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="footer-cta">
+          <div>
+            <div class="badge" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.78); border-color: rgba(255,255,255,0.14);">Let’s Work Together</div>
+            <h2 class="section-title" style="color:white; margin-top:8px;">Ready to bring strong communication and strategy to your brand.</h2>
+            <p class="muted-light">Available for marketing support, branding, content creation, customer engagement, and communication-focused opportunities.</p>
+          </div>
+          <div class="footer-box">
+            <p><strong>Email:</strong> jayrdiego122@gmail.com</p>
+            <p><strong>Phone:</strong> (510) 816-1013</p>
+            <p><strong>Location:</strong> Oakland, California</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Jay-Ar Diego. Built as a clean personal portfolio website.</div>
+  </footer>
+</body>
+</html>
